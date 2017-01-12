@@ -18,9 +18,23 @@ export class RedditsPage {
   	this.getPosts(this.category, this.limit);
 
   }
+ 
   getDefaults(){
-    this.category = "sports";
-    this.limit = 10;
+    if(localStorage.getItem('category') != null){
+      this.category = localStorage.getItem('category');
+    }else{
+      this.category = "sports";
+
+    }
+
+
+    if(localStorage.getItem('limit') != null){
+      this.category = localStorage.getItem('limit');
+    }else{
+      this.limit=5;
+    }
+
+    
   }
   getPosts(category, limit){
   	this.redditService.getPosts(category,limit).subscribe(response => {
